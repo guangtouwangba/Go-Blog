@@ -9,15 +9,15 @@ import (
 )
 
 type HttpServer struct {
-	Addr string `yaml:"addr,omitempty" default:"0.0.0.0"`
+	Host string `yaml:"addr,omitempty" default:"0.0.0.0"`
 	Port int64  `yaml:"port"`
 }
 
 func (h *HttpServer) GetServerConfig() string {
-	if h.Addr == "" {
+	if h.Host == "" {
 		return "0.0.0.0" + ":" + strconv.FormatInt(h.Port, 10)
 	}
-	return h.Addr + ":" + strconv.FormatInt(h.Port, 10)
+	return h.Host + ":" + strconv.FormatInt(h.Port, 10)
 }
 
 type Db interface {
@@ -26,12 +26,18 @@ type Db interface {
 
 type Mysql struct {
 	URL      string `yaml:"url"`
+	Database string `yaml:"database"`
+	Params   string `yaml:"params，omitempty"`
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
 }
 
 func (m *Mysql) GetDb() string {
-	return m.URL
+	log.Println("mysql url:", m.URL)
+	log.Println("mysql user:", m.User)
+	log.Println("mysql password:", m.Password)
+	dbAddr := m.User + ":" + m.Password + "@tcp(" + m.URL + ")" + "/"
+	return dbAddr
 }
 
 type YmlConfig struct {
@@ -45,7 +51,6 @@ func GetYamlConfig() *YmlConfig {
 	if err != nil {
 		log.Panicln(err)
 	}
-	log.Println(string(yamlFile))
 	err = yaml.NewDecoder(bytes.NewReader(yamlFile)).Decode(conf)
 	if err != nil {
 		log.Panicln(err)

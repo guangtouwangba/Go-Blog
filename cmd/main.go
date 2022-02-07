@@ -3,9 +3,11 @@ package main
 import (
 	"Go-Blog/conf"
 	"Go-Blog/internal/adapter/inbound/rest/routing"
+	"Go-Blog/internal/adapter/outbound/db"
 )
 
 func main() {
+	db.CreateDatabaseConnection()
 	r := routing.InitRouter()
 	err := r.Run(conf.GetYamlConfig().HttpServer.GetServerConfig())
 	if err != nil {
