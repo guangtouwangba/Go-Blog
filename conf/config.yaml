@@ -1,0 +1,7 @@
+httpserver:
+  port: 8080
+
+mysql:
+  url : "127.0.0.1:3306"
+  user : "root"
+  password : "123456"
