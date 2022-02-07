@@ -2,13 +2,12 @@ package db
 
 import (
 	"Go-Blog/conf"
-	"database/sql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"
 )
 
-var Db *sql.DB
+var Db *gorm.DB
 
 func CreateDatabaseConnection() {
 	log.SetFlags(log.Lshortfile | log.Ldate | log.Lmicroseconds)
