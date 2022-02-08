@@ -2,7 +2,7 @@ httpserver:
   port: 8080
 
 mysql:
-  url : db:3306
+  url : "0.0.0.0:3306"
   database: "goblog"
   user : "root"
   password : "123456"

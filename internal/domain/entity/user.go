@@ -1,10 +1,10 @@
 package entity
 
-import uuid "github.com/satori/go.uuid"
-
 type User struct {
-	UUID        uuid.UUID `json:"uuid" gorm:"comment:用户UUID" `                   // 用户UUID
-	Username    string    `json:"userName" gorm:"comment:用户登录名"`                 // 用户登录名
-	Password    string    `json:"-"  gorm:"comment:用户登录密码"`                      // 用户登录密码
-	AuthorityId string    `json:"authorityId" gorm:"default:888;comment:用户角色ID"` // 用户角色ID
+	Email    string `json:"email" gorm:"type:varchar(100);unique_index"`
+	UserName string `json:"userName" gorm:"type:varchar(100)"`
+	Password string `json:"password" gorm:"type:varchar(100)"`
+	PhoneNum string `json:"phoneNum" gorm:"type:varchar(100)"`
+	Describe string `json:"describe" gorm:"type:varchar(100)"`
+	Type     int    `json:"type" gorm:"type:int(11)"`
 }

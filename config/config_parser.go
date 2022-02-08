@@ -33,9 +33,9 @@ type Mysql struct {
 }
 
 func (m *Mysql) GetDb() string {
-	log.Println("mysql url:", m.URL)
-	log.Println("mysql user:", m.User)
-	log.Println("mysql password:", m.Password)
+	//log.Println("mysql url:", m.URL)
+	//log.Println("mysql user:", m.User)
+	//log.Println("mysql password:", m.Password)
 	dbAddr := m.User + ":" + m.Password + "@tcp(" + m.URL + ")" + "/"
 	return dbAddr
 }
@@ -55,8 +55,8 @@ func GetYamlConfig() *YmlConfig {
 	if err != nil {
 		log.Panicln(err)
 	}
-	log.Println("config:", conf)
-	log.Println("load http server address:", conf.HttpServer.GetServerConfig())
-	log.Println("load mysql url:", conf.Mysql.URL)
+	//log.Println("config:", conf)
+	//log.Println("load http server address:", conf.HttpServer.GetServerConfig())
+	//log.Println("load mysql url:", conf.Mysql.URL)
 	return conf
 }

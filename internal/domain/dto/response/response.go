@@ -1,15 +1,18 @@
 package response
 
 type Response struct {
-	Status  string      `json:"status" default:"ok"`
+	Code    int64       `json:"code" default:"0"`
 	Message string      `json:"message"`
 	Data    interface{} `json:"data"`
 }
 
-func (r *Response) SetStatus(status string) {
-	r.Status = status
-}
 func (r *Response) Success() *Response {
-	r.Status = "ok"
+	r.Code = 0
+	return r
+}
+
+func (r *Response) SuccessWithData(data interface{}) *Response {
+	r.Code = 0
+	r.Data = data
 	return r
 }

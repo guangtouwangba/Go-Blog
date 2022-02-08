@@ -6,8 +6,12 @@ import (
 	"Go-Blog/internal/adapter/outbound/db"
 )
 
+func init() {
+	dbTool := db.MysqlTool{}
+	dbTool.CreateDatabaseConnection()
+}
+
 func main() {
-	db.CreateDatabaseConnection()
 	r := routing.InitRouter()
 	err := r.Run(config.GetYamlConfig().HttpServer.GetServerConfig())
 	if err != nil {

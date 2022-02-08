@@ -8,13 +8,14 @@ import (
 
 var (
 	baseController  = controller.BaseController{}
-	loginController = controller.LoginController{}
+	loginController = controller.UserController{}
 )
 
 func InitRouter() *gin.Engine {
 	var router = gin.Default()
 	log.Println("Router initialized")
 	router.GET("/health", baseController.Health)
-	router.POST("/api/v1/login", loginController.HandleLogin)
+	router.POST("/api/v1/login", loginController.UserLogin)
+	router.POST("/api/v1/register", loginController.UserRegister)
 	return router
 }
