@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Go-Blog/conf"
+	"Go-Blog/config"
 	"Go-Blog/internal/adapter/inbound/rest/routing"
 	"Go-Blog/internal/adapter/outbound/db"
 )
@@ -9,7 +9,7 @@ import (
 func main() {
 	db.CreateDatabaseConnection()
 	r := routing.InitRouter()
-	err := r.Run(conf.GetYamlConfig().HttpServer.GetServerConfig())
+	err := r.Run(config.GetYamlConfig().HttpServer.GetServerConfig())
 	if err != nil {
 		return
 	} // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

@@ -1,18 +1,20 @@
 package routing
 
 import (
+	"Go-Blog/internal/adapter/inbound/rest/controller"
 	"github.com/gin-gonic/gin"
 	"log"
+)
+
+var (
+	baseController  = controller.BaseController{}
+	loginController = controller.LoginController{}
 )
 
 func InitRouter() *gin.Engine {
 	var router = gin.Default()
 	log.Println("Router initialized")
-	router.GET("/health-check", func(c *gin.Context) {
-		log.Println("health-check")
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	router.GET("/health", baseController.Health)
+	router.POST("/api/v1/login", loginController.HandleLogin)
 	return router
 }

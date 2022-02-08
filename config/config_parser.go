@@ -1,4 +1,4 @@
-package conf
+package config
 
 import (
 	"bytes"
@@ -47,7 +47,7 @@ type YmlConfig struct {
 
 func GetYamlConfig() *YmlConfig {
 	conf := new(YmlConfig)
-	yamlFile, err := ioutil.ReadFile("conf/config.yaml")
+	yamlFile, err := ioutil.ReadFile("config/config.yaml")
 	if err != nil {
 		log.Panicln(err)
 	}
@@ -55,6 +55,7 @@ func GetYamlConfig() *YmlConfig {
 	if err != nil {
 		log.Panicln(err)
 	}
+	log.Println("config:", conf)
 	log.Println("load http server address:", conf.HttpServer.GetServerConfig())
 	log.Println("load mysql url:", conf.Mysql.URL)
 	return conf
