@@ -38,3 +38,13 @@ func (u *UserConverter) RequestToPo(user *request.Register) *po.User {
 		Describe: user.Describe,
 	}
 }
+
+func (u *UserConverter) PoToEntity(user *po.User) *entity.User {
+	return &entity.User{
+		Email:    user.Email,
+		UserName: user.UserName,
+		Password: user.Password,
+		PhoneNum: user.PhoneNum,
+		Describe: user.Describe,
+	}
+}

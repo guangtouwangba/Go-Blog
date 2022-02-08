@@ -38,3 +38,13 @@ func (u *UserController) UserRegister(c *gin.Context) {
 	c.JSON(200, r.SuccessWithData(userpo))
 
 }
+
+func (u *UserController) UserInfo(c *gin.Context) {
+	userService := service.UserService{}
+	userpo, err := userService.GetByEmail(c.Param("email"))
+	if err != nil {
+		log.Panicln(err)
+	}
+	r := &response.Response{}
+	c.JSON(200, r.SuccessWithData(userpo))
+}

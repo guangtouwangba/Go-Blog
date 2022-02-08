@@ -10,3 +10,7 @@ var (
 	tool          = &db.MysqlTool{}
 	Connect       = tool.GetInstance().GetDb()
 )
+
+const (
+	RECORD_NOT_EXIST = "record not exist"
+)

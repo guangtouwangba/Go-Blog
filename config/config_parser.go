@@ -27,7 +27,7 @@ type Db interface {
 type Mysql struct {
 	URL      string `yaml:"url"`
 	Database string `yaml:"database"`
-	Params   string `yaml:"params，omitempty"`
+	Params   string `yaml:"params,omitempty"`
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
 }

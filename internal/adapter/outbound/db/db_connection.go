@@ -18,7 +18,8 @@ var once sync.Once
 
 func (m *MysqlTool) CreateDatabaseConnection() (success bool) {
 	log.SetFlags(log.Lshortfile | log.Ldate | log.Lmicroseconds)
-	dbase := config.GetYamlConfig().GetDb()
+	log.Println(config.GetYamlConfig().GetDb() + config.GetYamlConfig().Mysql.Params)
+	dbase := config.GetYamlConfig().GetDb() + config.GetYamlConfig().Mysql.Params
 	Db, err := gorm.Open(mysql.Open(dbase), &gorm.Config{})
 	m.Db = Db
 	if err != nil {
