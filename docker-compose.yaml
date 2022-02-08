@@ -8,6 +8,8 @@ services:
       dockerfile: ./deploy/Dockerfile
     image: goblog
     container_name: goblog
+    volumes:
+      - ./config/:./config/
     ports:
       - "8080:8080"
     depends_on:

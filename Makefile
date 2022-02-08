@@ -16,3 +16,7 @@ dev:
 image:
 	docker build -f ./deploy/Dockerfile -t goblog .
 
+push:
+	docker build -f ./deploy/Dockerfile -t 819110182/goblog:1.0 .
+	docker push 819110182/goblog:1.0
+

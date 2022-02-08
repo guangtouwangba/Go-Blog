@@ -7,3 +7,6 @@ httpserver:
   port: 8080
   host: 主机地址，默认0.0.0.0
 ```
+
+## 启动
+直接运行`start.sh`或者`docker-compose up -d`即可启动项目
