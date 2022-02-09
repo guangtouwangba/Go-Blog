@@ -9,7 +9,7 @@ import (
 type UserConverter struct {
 }
 
-func (u *UserConverter) ToEntity(user *request.Register) *entity.User {
+func (u *UserConverter) ToEntity(user *request.UserRegisterRequest) *entity.User {
 	return &entity.User{
 		Email:    user.Email,
 		UserName: user.UserName,
@@ -29,7 +29,7 @@ func (u *UserConverter) EntityToPo(user *entity.User) *po.User {
 	}
 }
 
-func (u *UserConverter) RequestToPo(user *request.Register) *po.User {
+func (u *UserConverter) RequestToPo(user *request.UserRegisterRequest) *po.User {
 	return &po.User{
 		Email:    user.Email,
 		UserName: user.UserName,

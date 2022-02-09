@@ -24,6 +24,7 @@ func (u *UserService) GetByEmail(email string) (*entity.User, error) {
 }
 
 func (u *UserService) Create(user *po.User) error {
-	res := constant.Connect.Omit("Id").FirstOrCreate(user)
+	res := constant.Connect.Omit("Id").FirstOrCreate(user, &po.User{Email: user.Email})
+	log.Println(user)
 	return res.Error
 }

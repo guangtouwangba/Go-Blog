@@ -13,4 +13,5 @@ var (
 
 const (
 	RECORD_NOT_EXIST = "record not exist"
+	LOGIN_FAILED     = "login failed"
 )
