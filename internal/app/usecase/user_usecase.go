@@ -4,16 +4,16 @@ import (
 	"Go-Blog/internal/constant"
 	"Go-Blog/internal/domain/dto/request"
 	"Go-Blog/internal/domain/entity"
-	"Go-Blog/internal/service"
+	"Go-Blog/internal/domain/po"
 	"log"
 )
 
 type UserUseCase struct {
+	UserRepository po.UserRepository
 }
 
 func (l *UserUseCase) Login(login *request.UserLoginRequest) (*entity.User, error) {
-	userService := &service.UserService{}
-	user, err := userService.GetByEmail(login.Email)
+	user, err := l.UserRepository.GetByEmail(login.Email)
 	if err != nil || user.Password != login.Password {
 		log.Panicln(constant.LOGIN_FAILED)
 		return nil, err
@@ -24,8 +24,7 @@ func (l *UserUseCase) Login(login *request.UserLoginRequest) (*entity.User, erro
 func (l *UserUseCase) Register(register *request.UserRegisterRequest) (*entity.User, error) {
 	userpo := constant.UserConverter.RequestToPo(register)
 	log.Println(&register)
-	userService := service.UserService{}
-	err := userService.Create(userpo)
+	err := l.UserRepository.Create(userpo)
 	if err != nil {
 		log.Panicln(err)
 	}

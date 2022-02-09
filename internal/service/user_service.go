@@ -8,6 +8,7 @@ import (
 )
 
 type UserService struct {
+	UserRepository po.UserRepository
 }
 
 func (u *UserService) GetByEmail(email string) (*entity.User, error) {
