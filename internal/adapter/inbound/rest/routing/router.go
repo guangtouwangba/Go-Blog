@@ -32,6 +32,6 @@ func InitRouter() *gin.Engine {
 	router.POST("/api/v1/login", loginController.UserLogin)
 	router.GET("/api/v1/user/:email", loginController.UserInfo)
 	router.POST("/api/v1/register", loginController.UserRegister)
-	router.GET("/api/v1/articleList", articleController.AllArticles)
+	router.GET("/api/v1/articleList", articleController.ArticleList)
 	return router
 }

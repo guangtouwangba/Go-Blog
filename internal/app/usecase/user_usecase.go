@@ -15,7 +15,7 @@ type UserUseCase struct {
 func (l *UserUseCase) Login(login *request.UserLoginRequest) (*entity.User, error) {
 	user, err := l.UserRepository.GetByEmail(login.Email)
 	if err != nil || user.Password != login.Password {
-		log.Panicln(constant.LOGIN_FAILED)
+		log.Panicln(constant.LoginFailed)
 		return nil, err
 	}
 	return constant.UserConverter.PoToEntity(user), nil

@@ -14,7 +14,7 @@ func (u *UserService) GetByEmail(email string) (*po.User, error) {
 	user := &po.User{}
 	res := constant.Connect.First(user, "email = ?", email)
 	if res.Error != nil {
-		panic(constant.RECORD_NOT_EXIST)
+		panic(constant.RecordNotExist)
 		return nil, res.Error
 	}
 	//entityUser := constant.UserConverter.PoToEntity(user)

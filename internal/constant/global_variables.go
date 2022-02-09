@@ -13,7 +13,8 @@ var (
 )
 
 const (
-	RECORD_NOT_EXIST = "record not exist"
-	LOGIN_FAILED     = "login failed"
-	GET_ARTICLE_FAIL = "get article failed"
+	RecordNotExist   = "record not exist"
+	LoginFailed      = "login failed"
+	GetArticleFailed = "get article failed"
+	InvalidParams    = "invalid params"
 )
