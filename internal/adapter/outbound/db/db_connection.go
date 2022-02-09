@@ -38,7 +38,7 @@ func (m *MysqlTool) CreateDatabaseConnection() (success bool) {
 
 func (m *MysqlTool) InitTables(db *gorm.DB) {
 	db.Exec("USE " + config.GetYamlConfig().Mysql.Database)
-	err := db.AutoMigrate(&po.User{})
+	err := db.AutoMigrate(&po.User{}, &po.Article{}, &po.Comment{}, &po.Tag{})
 	if err != nil {
 		log.Panicln("err:", err.Error())
 	}

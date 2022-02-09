@@ -18,7 +18,7 @@ func (l *UserUseCase) Login(login *request.UserLoginRequest) (*entity.User, erro
 		log.Panicln(constant.LOGIN_FAILED)
 		return nil, err
 	}
-	return user, nil
+	return constant.UserConverter.PoToEntity(user), nil
 }
 
 func (l *UserUseCase) Register(register *request.UserRegisterRequest) (*entity.User, error) {
@@ -30,4 +30,12 @@ func (l *UserUseCase) Register(register *request.UserRegisterRequest) (*entity.U
 	}
 
 	return constant.UserConverter.PoToEntity(userpo), nil
+}
+
+func (l *UserUseCase) GetByEmail(email string) (*entity.User, error) {
+	user, err := l.UserRepository.GetByEmail(email)
+	if err != nil {
+		log.Panicln(err)
+	}
+	return constant.UserConverter.PoToEntity(user), nil
 }

@@ -4,7 +4,6 @@ import (
 	"Go-Blog/internal/domain/dto/response"
 	"github.com/gin-gonic/gin"
 	"log"
-	"net/http"
 	"runtime/debug"
 )
 
@@ -15,11 +14,7 @@ func Recover(c *gin.Context) {
 			log.Printf("panic: %v\n", r)
 			debug.PrintStack()
 			//封装通用json返回
-			res := response.Response{}
-			c.JSON(http.StatusInternalServerError, res.Error(
-				http.StatusInternalServerError,
-				errorToString(r),
-			))
+			response.ErrorWithMsg(errorToString(r), c)
 			//终止后续接口调用，不加的话recover到异常后，还会继续执行接口里后续代码
 			c.Abort()
 		}

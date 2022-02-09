@@ -1,6 +1,12 @@
 package response
 
-import "net/http"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
+
+const SUCCESS = 0
+const ERROR = 7
 
 type Response struct {
 	Code    int64       `json:"code" default:"0"`
@@ -8,19 +14,28 @@ type Response struct {
 	Data    interface{} `json:"data"`
 }
 
-func (r *Response) Success() *Response {
-	r.Code = http.StatusOK
-	return r
+func Result(code int64, data interface{}, msg string, c *gin.Context) {
+	// 开始时间
+	c.JSON(http.StatusOK, Response{
+		code,
+		msg,
+		data,
+	})
 }
 
-func (r *Response) SuccessWithData(data interface{}) *Response {
-	r.Code = http.StatusOK
-	r.Data = data
-	return r
+func Success(c *gin.Context) {
+	Result(SUCCESS, map[string]interface{}{}, "操作成功", c)
+
 }
 
-func (r *Response) Error(code int64, message string) *Response {
-	r.Code = code
-	r.Message = message
-	return r
+func SuccessWithData(data interface{}, c *gin.Context) {
+	Result(SUCCESS, data, "操作成功", c)
+}
+
+func Error(c *gin.Context) {
+	Result(ERROR, map[string]interface{}{}, "操作失败", c)
+}
+
+func ErrorWithMsg(msg string, c *gin.Context) {
+	Result(ERROR, map[string]interface{}{}, msg, c)
 }
