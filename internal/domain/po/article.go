@@ -14,7 +14,7 @@ type Article struct {
 	Numbers     int64      `json:"numbers"`                                                // 文章字数
 	ImageUrl    string     `json:"image_url"`
 	Category    int64      `json:"category"`                      // 分类 1：技术 2：生活 3：其他
-	State       int64      `json:"state"`                         // 发布状态 0: 草稿 1: 已发布 2： 删除
+	State       int        `json:"state"`                         // 发布状态 0: 草稿 1: 已发布 2： 删除
 	Comments    []*Comment `json:"comments" gorm:"foreignkey:Id"` // 评论
 	Tags        []*Tag     `json:"tags" gorm:"foreignkey:id"`     // 标签
 	//LikedUsers  []User     `json:"users" gorm:"foreignkey:UUID"`  // 点赞用户
