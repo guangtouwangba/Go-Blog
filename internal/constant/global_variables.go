@@ -17,4 +17,5 @@ const (
 	LoginFailed      = "login failed"
 	GetArticleFailed = "get article failed"
 	InvalidParams    = "invalid params"
+	GetUserFailed    = "get user failed"
 )

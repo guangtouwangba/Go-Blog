@@ -21,6 +21,20 @@ func (l *UserUseCase) Login(login *request.UserLoginRequest) (*entity.User, erro
 	return constant.UserConverter.PoToEntity(user), nil
 }
 
+func (l *UserUseCase) AdminLogin(login *request.AdminLoginRequest) (*entity.User, error) {
+	userId, err := l.UserRepository.GetUserIdByUsername(login.UserName)
+	if err != nil {
+		log.Panicln(constant.LoginFailed)
+		return nil, err
+	}
+	user, err := l.UserRepository.GetUserById(userId)
+	if err != nil || user.Password != login.Password {
+		log.Panicln(constant.LoginFailed)
+		return nil, err
+	}
+	return constant.UserConverter.PoToEntity(user), nil
+}
+
 func (l *UserUseCase) Register(register *request.UserRegisterRequest) (*entity.User, error) {
 	userpo := constant.UserConverter.RequestToPo(register)
 	log.Println(&register)

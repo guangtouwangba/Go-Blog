@@ -2,6 +2,7 @@ package controller
 
 import (
 	"Go-Blog/internal/app/usecase"
+	"Go-Blog/internal/constant"
 	"Go-Blog/internal/domain/dto/request"
 	"Go-Blog/internal/domain/dto/response"
 	"github.com/gin-gonic/gin"
@@ -13,9 +14,13 @@ type UserController struct {
 	UserUseCase usecase.UserUseCase
 }
 
+// UserLogin 博客端 普通用户登陆
 func (u *UserController) UserLogin(c *gin.Context) {
 	req := request.UserLoginRequest{}
-	c.BindJSON(&req)
+	err := c.BindJSON(&req)
+	if err != nil {
+		response.InvalidParamWithMsg(constant.InvalidParams, c)
+	}
 	user, err := u.UserUseCase.Login(&req)
 	if err != nil {
 		log.Println(err)
@@ -26,9 +31,30 @@ func (u *UserController) UserLogin(c *gin.Context) {
 	response.SuccessWithData(user, c)
 }
 
+// AdminLogin 管理端 管理员登陆
+func (u *UserController) AdminLogin(c *gin.Context) {
+	req := request.AdminLoginRequest{}
+	err := c.BindJSON(&req)
+	if err != nil || req.UserName == "" {
+		response.InvalidParamWithMsg(constant.InvalidParams, c)
+		return
+	}
+	user, err := u.UserUseCase.AdminLogin(&req)
+	if err != nil {
+		log.Println(err)
+		response.ErrorWithMsg(err.Error(), c)
+		return
+	}
+	log.Println(req)
+	response.SuccessWithData(user, c)
+}
+
 func (u *UserController) UserRegister(c *gin.Context) {
 	register := request.UserRegisterRequest{}
-	c.BindJSON(&register)
+	err := c.BindJSON(&register)
+	if err != nil {
+		response.InvalidParamWithMsg(constant.InvalidParams, c)
+	}
 	log.Println("request from front end", c.Request.Body)
 	res, err := u.UserUseCase.Register(&register)
 	if err != nil {
@@ -39,7 +65,8 @@ func (u *UserController) UserRegister(c *gin.Context) {
 	response.SuccessWithData(res, c)
 }
 
-func (u *UserController) UserInfo(c *gin.Context) {
+// UserInfoByEmail TODO: 后期删除该方法，通过UUID获取用户信息
+func (u *UserController) UserInfoByEmail(c *gin.Context) {
 	userpo, err := u.UserUseCase.GetByEmail(c.Param("email"))
 	if err != nil {
 		response.Error(c)

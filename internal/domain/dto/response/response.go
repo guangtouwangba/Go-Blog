@@ -6,6 +6,7 @@ import (
 )
 
 const SUCCESS = 0
+const INVALID_PARAMS = 1
 const ERROR = 7
 
 type Response struct {
@@ -38,4 +39,12 @@ func Error(c *gin.Context) {
 
 func ErrorWithMsg(msg string, c *gin.Context) {
 	Result(ERROR, map[string]interface{}{}, msg, c)
+}
+
+func InvalidParam(c *gin.Context) {
+	Result(INVALID_PARAMS, map[string]interface{}{}, "参数错误", c)
+}
+
+func InvalidParamWithMsg(msg string, c *gin.Context) {
+	Result(INVALID_PARAMS, map[string]interface{}{}, msg, c)
 }

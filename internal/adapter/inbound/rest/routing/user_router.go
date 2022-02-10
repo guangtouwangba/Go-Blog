@@ -22,9 +22,10 @@ var (
 func (s *UserRouter) InitUserRouter(Router *gin.RouterGroup) {
 	userRouter := Router.Group("")
 	{
-		userRouter.GET("/user/:email", loginController.UserInfo)
+		// TODO: 后期改成通过uuid查询用户
+		userRouter.GET("/user/:email", loginController.UserInfoByEmail)
 		userRouter.POST("/login", loginController.UserLogin)
-		userRouter.POST("/loginAdmin")
+		userRouter.POST("/loginAdmin", loginController.AdminLogin)
 		userRouter.POST("/register", loginController.UserRegister)
 	}
 }

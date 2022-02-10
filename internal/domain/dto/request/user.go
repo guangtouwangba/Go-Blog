@@ -13,3 +13,8 @@ type UserLoginRequest struct {
 	Email    string `json:"email"`    // 用户名
 	Password string `json:"password"` // 密码
 }
+
+type AdminLoginRequest struct {
+	UserName string `json:"userName"`
+	Password string `json:"password"`
+}
