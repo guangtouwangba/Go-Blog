@@ -9,4 +9,13 @@ httpserver:
 ```
 
 ## 启动
+方法1：
 修改配置文件config.yaml中database的地址为`db:3306`运行`start.sh`或者`docker-compose up -d`即可启动项目
+
+方法2：
+使用dockerhub中的镜像启动该项目：
+```shell
+# 启动mysql
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+docker run -p 8080:8080 --name go-blog -d 819110812/goblog
+```
