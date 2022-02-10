@@ -9,7 +9,7 @@ services:
     image: goblog
     container_name: goblog
     volumes:
-      - ./config/:./config/
+      - ./config/:/config/
     ports:
       - "8080:8080"
     depends_on:
