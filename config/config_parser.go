@@ -9,7 +9,7 @@ import (
 )
 
 type HttpServer struct {
-	Host string `yaml:"addr,omitempty" default:"0.0.0.0"`
+	Host string `yaml:"host,omitempty"`
 	Port int64  `yaml:"port"`
 }
 

@@ -4,6 +4,7 @@ import (
 	"Go-Blog/config"
 	"Go-Blog/internal/adapter/inbound/rest/routing"
 	"Go-Blog/internal/adapter/outbound/db"
+	"log"
 )
 
 func init() {
@@ -13,6 +14,7 @@ func init() {
 
 func main() {
 	r := routing.InitRouter()
+	log.Println("Server is running on  " + config.GetYamlConfig().HttpServer.GetServerConfig())
 	err := r.Run(config.GetYamlConfig().HttpServer.GetServerConfig())
 	if err != nil {
 		return

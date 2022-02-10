@@ -13,7 +13,7 @@ func InitRouter() *gin.Engine {
 	Router.Use(middleware.Recover)
 
 	log.Println("Router initialized")
-	PrivateGroup := Router.Group("/api/v1")
+	PrivateGroup := Router.Group("/api")
 
 	{
 		RouterGroupInstance.InitUserRouter(PrivateGroup)

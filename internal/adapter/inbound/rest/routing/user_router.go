@@ -24,6 +24,7 @@ func (s *UserRouter) InitUserRouter(Router *gin.RouterGroup) {
 	{
 		userRouter.GET("/user/:email", loginController.UserInfo)
 		userRouter.POST("/login", loginController.UserLogin)
+		userRouter.POST("/loginAdmin")
 		userRouter.POST("/register", loginController.UserRegister)
 	}
 }
