@@ -9,6 +9,9 @@ test:
 	go test ./...
 
 dev:
+	export GO111MODULE=on
+	export GOPROXY=https://goproxy.io
+	go env -w GOPROXY=https://goproxy.cn,direct
 	go mod tidy
 	go get ./...
 	go run ./cmd/main.go
