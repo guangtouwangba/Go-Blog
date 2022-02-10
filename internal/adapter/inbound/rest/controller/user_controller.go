@@ -55,6 +55,7 @@ func (u *UserController) UserRegister(c *gin.Context) {
 	err := c.BindJSON(&register)
 	if err != nil {
 		response.InvalidParamWithMsg(constant.InvalidParams, c)
+		log.Panicln(err)
 	}
 	log.Println("request from front end", c.Request.Body)
 	res, err := u.UserUseCase.Register(&register)

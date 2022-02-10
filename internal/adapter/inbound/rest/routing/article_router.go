@@ -19,7 +19,7 @@ var (
 )
 
 func (a *ArticleRouter) InitArticleRouter(router *gin.RouterGroup) {
-	articleRouter := router.Group("/")
+	articleRouter := router.Group("")
 	{
 		articleRouter.GET("/articleList", articleController.ArticleList)
 

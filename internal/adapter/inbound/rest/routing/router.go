@@ -10,7 +10,7 @@ var ()
 
 func InitRouter() *gin.Engine {
 	var Router = gin.Default()
-	Router.Use(middleware.Recover)
+	Router.Use(middleware.Recover).Use(middleware.RequestLogger)
 
 	log.Println("Router initialized")
 	PrivateGroup := Router.Group("/api")
