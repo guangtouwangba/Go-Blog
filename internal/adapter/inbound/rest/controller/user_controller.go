@@ -6,6 +6,7 @@ import (
 	"Go-Blog/internal/domain/dto/request"
 	"Go-Blog/internal/domain/dto/response"
 	"github.com/gin-gonic/gin"
+	uuid "github.com/satori/go.uuid"
 	"log"
 )
 
@@ -65,9 +66,9 @@ func (u *UserController) UserRegister(c *gin.Context) {
 	response.SuccessWithData(res, c)
 }
 
-// UserInfoByEmail TODO: 后期删除该方法，通过UUID获取用户信息
-func (u *UserController) UserInfoByEmail(c *gin.Context) {
-	userpo, err := u.UserUseCase.GetByEmail(c.Param("email"))
+// UserInfoById TODO: 后期删除该方法，通过UUID获取用户信息
+func (u *UserController) UserInfoById(c *gin.Context) {
+	userpo, err := u.UserUseCase.GetUserById(uuid.FromStringOrNil(c.Param("id")))
 	if err != nil {
 		response.Error(c)
 		log.Panicln(err)

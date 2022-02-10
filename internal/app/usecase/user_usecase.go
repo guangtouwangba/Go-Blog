@@ -5,6 +5,7 @@ import (
 	"Go-Blog/internal/domain/dto/request"
 	"Go-Blog/internal/domain/entity"
 	"Go-Blog/internal/domain/po"
+	uuid "github.com/satori/go.uuid"
 	"log"
 )
 
@@ -46,8 +47,8 @@ func (l *UserUseCase) Register(register *request.UserRegisterRequest) (*entity.U
 	return constant.UserConverter.PoToEntity(userpo), nil
 }
 
-func (l *UserUseCase) GetByEmail(email string) (*entity.User, error) {
-	user, err := l.UserRepository.GetByEmail(email)
+func (l *UserUseCase) GetUserById(id uuid.UUID) (*entity.User, error) {
+	user, err := l.UserRepository.GetUserById(id)
 	if err != nil {
 		log.Panicln(err)
 	}
