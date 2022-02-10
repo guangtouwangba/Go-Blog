@@ -9,4 +9,4 @@ httpserver:
 ```
 
 ## 启动
-直接运行`start.sh`或者`docker-compose up -d`即可启动项目
+修改配置文件config.yaml中database的地址为`db:3306`运行`start.sh`或者`docker-compose up -d`即可启动项目

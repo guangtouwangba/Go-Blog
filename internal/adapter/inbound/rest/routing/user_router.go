@@ -25,7 +25,7 @@ func (s *UserRouter) InitUserRouter(Router *gin.RouterGroup) {
 		// TODO: 后期改成通过uuid查询用户
 		userRouter.GET("/user/:id", loginController.UserInfoById)
 		userRouter.POST("/login", loginController.UserLogin)
-		userRouter.POST("/loginAdmin", loginController.AdminLogin)
+		userRouter.POST("/loginAdmin", loginController.UserLogin)
 		userRouter.POST("/register", loginController.UserRegister)
 	}
 }
