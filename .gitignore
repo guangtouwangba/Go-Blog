@@ -1,0 +1,4 @@
+.idea
+./blog-web/node_modules
+./blog-web/package-lock.json
+./blog-web/.gitignore
