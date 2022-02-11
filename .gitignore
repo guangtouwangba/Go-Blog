@@ -2,3 +2,6 @@
 ./blog-web/node_modules
 ./blog-web/package-lock.json
 ./blog-web/.gitignore
+./blog-admin/node_modules
+./blog-admin/package-lock.json
+./blog-admin/.gitignore
