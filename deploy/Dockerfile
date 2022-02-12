@@ -1,5 +1,6 @@
 FROM golang:1.17-alpine
 
+
 WORKDIR /go/src
 ADD . /go/src
 ENV GO111MODULE=on \
