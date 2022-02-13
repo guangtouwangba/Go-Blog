@@ -43,9 +43,6 @@ export const layout = ({ initialState }) => {
   return {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
-    waterMarkProps: {
-      content: initialState?.currentUser?.name,
-    },
     footerRender: () => <Footer />,
     onPageChange: () => {
       // 如果没有登录，重定向到 login
