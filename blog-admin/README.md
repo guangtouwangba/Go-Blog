@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# 一个简易的基于 React + Ant Design Pro 的博客后台管理系统
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 前言
 
-## Available Scripts
+Ant Design Pro 是基于 Ant Design 和 umi 的封装的一整套企业级中后台前端/设计解决方案
 
-In the project directory, you can run:
+React 是一个用于构建用户界面的 JavaScript 库。其中主要使用了 React Hooks + 函数组件
 
-### `npm start`
+## 安装
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```shell
+// 安装依赖包
+npm i
+// 运行
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+打开浏览器，输入 http://localhost:8000
 
-### `npm test`
+## 功能介绍
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+博客拥有博客后台的基础功能，如下图所示
 
-### `npm run build`
+- 加载页 ![image-20211120154418803](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639113.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 登录页
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  - 管理员 账号：**buchiyu** 密码：**buchiyu**
+  - 用户 账号：**user** 密码：**buchiyu**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  ![image-20211120160705524](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639114.png)
 
-### `npm run eject`
+- 外框架
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  - 首先，跳转到欢迎页，目前为空
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ![image-20211120161314229](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639115.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 文章列表页面
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  ![image-20211120161436649](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639116.png)
 
-## Learn More
+  - 查看文章
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ![image-20211120161520207](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639117.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - 快速编辑文章
 
-### Code Splitting
+    ![image-20211120161618696](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639118.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  - 编辑文章，跳转到文章详情页
 
-### Analyzing the Bundle Size
+  - 点击【+新文章】，跳转到文章详情页
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 文章详情页
 
-### Making a Progressive Web App
+  - 编辑文章
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    ![image-20211120161819840](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639119.png)
 
-### Advanced Configuration
+  - 添加新文章
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    ![image-20211120161851836](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639120.png)
 
-### Deployment
+- 标签列表页
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  ![image-20211120161934158](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639121.png)
 
-### `npm run build` fails to minify
+  - 快速编辑标签
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    ![image-20211120162026625](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639122.png)
+
+- 接下来的 分类/建站日志 列表页和标签列表页功能类似
+
+- 友链列表页
+
+  ![image-20211120162344587](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639123.png)
+
+- 管理页
+
+  ![image-20211120162427505](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639124.png)
+
+- API 列表
+
+  ![image-20211120162510857](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639125.png)
+
+  ![image-20211120162534230](https://cdn.jsdelivr.net/gh/zangguojun/PicGo/img/202111201639126.png)
