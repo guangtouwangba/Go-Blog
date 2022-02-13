@@ -50,6 +50,12 @@ func (u *UserController) AdminLogin(c *gin.Context) {
 	response.SuccessWithData(user, c)
 }
 
+// GetCurrentUser
+func (u *UserController) GetCurrentUser(c *gin.Context) {
+	// todo 获取当前用户
+	response.SuccessWithData(nil, c)
+}
+
 func (u *UserController) UserRegister(c *gin.Context) {
 	register := request.UserRegisterRequest{}
 	err := c.BindJSON(&register)

@@ -36,7 +36,7 @@ const Login = () => {
   const handleSubmit = async (values) => {
     try {
       const res = await login(values);
-      if (res.success) {
+      if (res.code === 0) {
         message.success('登录成功！');
         await fetchUserInfo();
         if (!history) return;

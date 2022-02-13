@@ -18,6 +18,7 @@ func InitRouter() *gin.Engine {
 	{
 		RouterGroupInstance.InitUserRouter(PrivateGroup)
 		RouterGroupInstance.InitArticleRouter(PrivateGroup)
+		RouterGroupInstance.InitNoticeRouter(PrivateGroup)
 	}
 
 	Router.GET("/health", baseController.Health)
