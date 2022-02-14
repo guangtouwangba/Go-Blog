@@ -8,7 +8,7 @@ pipeline{
               $class: 'GitSCM',
               branches: [[name: 'master']],
               userRemoteConfigs: [[
-                url: 'git@github.com:819110812/Go-Blog.git',
+                url: 'git://github.com/819110812/Go-Blog.git',
                 credentialsId: '',
               ]]
              ])
