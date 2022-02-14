@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent {
+            docker { image 'golang:1.17-alpine' }
+        }
 
     stages{
         stage('Checkout SCM') {
