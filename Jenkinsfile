@@ -1,6 +1,6 @@
 pipeline{
     agent docker {
-        image ''
+        image 'docker.io/library/alpine:latest'
     }
     stages{
         stage('Build'){
