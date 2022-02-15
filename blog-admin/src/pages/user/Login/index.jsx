@@ -43,7 +43,6 @@ const Login = () => {
         if (!history) return;
         const { query } = history.location;
         console.log(history.location)
-        console.log(query)
         const { redirect } = query;
         console.log(redirect)
         history.push(redirect || '/');
