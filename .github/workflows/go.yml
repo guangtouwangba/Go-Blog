@@ -20,10 +20,11 @@ jobs:
 
     - name: Build
       run:  |
-            export GO111MODULE=on \ 
-            export GOPROXY=https://goproxy.io \
-            go env -w GOPROXY=https://goproxy.cn,direct
-            go build -o bin/main ./cmd/main
+        - export GO111MODULE=on
+        - export GOPROXY=https://goproxy.io
+        - go env -w GOPROXY=https://goproxy.io
+        - go get ./...
+        - go build -o bin/main ./cmd/main
 
     - name: Test
       run: go test -v ./...
