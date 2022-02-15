@@ -22,17 +22,35 @@ func (l *UserUseCase) Login(login *request.UserLoginRequest) (*entity.User, erro
 	return constant.UserConverter.PoToEntity(user), nil
 }
 
+// 管理端登陆 可通过用户名或者邮箱
 func (l *UserUseCase) AdminLogin(login *request.AdminLoginRequest) (*entity.User, error) {
-	userId, err := l.UserRepository.GetUserIdByUsername(login.UserName)
+	userId, err := l.UserRepository.GetUserIdByUsername(login.Account)
+	if userId == uuid.Nil {
+		userId, err = l.UserRepository.GetUserIdByEmail(login.Account)
+	}
+	if userId == uuid.Nil {
+		// 用户不存在
+		log.Panicln(constant.Login_0001.Message)
+		// return nil, errors.New(constant.Login_0001.Message)
+	}
+
 	if err != nil {
-		log.Panicln(constant.LoginFailed)
-		return nil, err
+		log.Panicln(constant.Login_0004.Message)
+		// return nil, errors.New(constant.Login_0004.Message)
 	}
+
 	user, err := l.UserRepository.GetUserById(userId)
-	if err != nil || user.Password != login.Password {
-		log.Panicln(constant.LoginFailed)
-		return nil, err
+	if err != nil {
+		// 用户不存在
+		log.Panicln(constant.Login_0001.Message)
+		// return nil, errors.New(constant.Login_0001.Message)
 	}
+
+	if user.Password != login.Password {
+		log.Panicln(constant.Login_0002.Message)
+		// return nil, errors.New(constant.Login_0002.Message)
+	}
+
 	return constant.UserConverter.PoToEntity(user), nil
 }
 

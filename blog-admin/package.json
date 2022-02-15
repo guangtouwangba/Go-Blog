@@ -111,5 +111,6 @@
   },
   "gitHooks": {
     "commit-msg": "fabric verify-commit"
-  }
+  },
+  "__npminstall_done": false
 }

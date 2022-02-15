@@ -27,6 +27,7 @@ const Login = () => {
 
   const fetchUserInfo = async () => {
     const userInfo = await initialState?.fetchUserInfo?.();
+    console.log(userInfo)
 
     if (userInfo) {
       await setInitialState((s) => ({ ...s, currentUser: userInfo }));
@@ -41,7 +42,10 @@ const Login = () => {
         await fetchUserInfo();
         if (!history) return;
         const { query } = history.location;
+        console.log(history.location)
+        console.log(query)
         const { redirect } = query;
+        console.log(redirect)
         history.push(redirect || '/');
         return;
       }
@@ -73,12 +77,12 @@ const Login = () => {
               size: 'large',
               prefix: <MailOutlined className={styles.prefixIcon} />,
             }}
-            name="email"
-            placeholder="邮箱"
+            name="account"
+            placeholder="邮箱/用户名"
             rules={[
               {
                 required: true,
-                message: '请输入邮箱！',
+                message: '请输入邮箱或用户名！',
               },
               // {
               //   pattern: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,

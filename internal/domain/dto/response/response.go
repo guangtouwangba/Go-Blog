@@ -48,3 +48,8 @@ func InvalidParam(c *gin.Context) {
 func InvalidParamWithMsg(msg string, c *gin.Context) {
 	Result(INVALID_PARAMS, map[string]interface{}{}, msg, c)
 }
+
+// 登陆失败
+func LoginFail(msg string, c *gin.Context) {
+	Result(INVALID_PARAMS, map[string]interface{}{}, msg, c)
+}

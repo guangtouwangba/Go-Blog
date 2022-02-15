@@ -15,6 +15,6 @@ type UserLoginRequest struct {
 }
 
 type AdminLoginRequest struct {
-	UserName string `json:"userName"`
+	Account  string `json:"account"`
 	Password string `json:"password"`
 }

@@ -34,16 +34,17 @@ func (u *UserController) UserLogin(c *gin.Context) {
 
 // AdminLogin 管理端 管理员登陆
 func (u *UserController) AdminLogin(c *gin.Context) {
-	req := request.UserLoginRequest{}
+	req := request.AdminLoginRequest{}
 	err := c.BindJSON(&req)
-	if err != nil || req.Email == "" {
-		response.InvalidParamWithMsg(constant.InvalidParams, c)
+	if err != nil || req.Account == "" {
+		response.LoginFail(constant.Login_0000.Message, c)
 		return
 	}
-	user, err := u.UserUseCase.Login(&req)
+	user, err := u.UserUseCase.AdminLogin(&req)
+
 	if err != nil {
 		log.Println(err)
-		response.ErrorWithMsg(err.Error(), c)
+		response.LoginFail(err.Error(), c)
 		return
 	}
 	log.Println(req)
