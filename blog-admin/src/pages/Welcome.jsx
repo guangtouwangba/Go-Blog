@@ -6,7 +6,9 @@ import { Card } from 'antd';
 export default () => {
   return (
     <PageContainer>
-      <Card> </Card>
+      <Card>
+        aaaaaaa
+      </Card>
     </PageContainer>
   );
 };

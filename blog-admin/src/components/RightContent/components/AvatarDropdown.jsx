@@ -50,7 +50,7 @@ const AvatarDropdown = ({ menu }) => {
   );
 
 
-  if (!currentUser?.name) {
+  if (!currentUser?.username) {
     return loading;
   }
 
@@ -80,7 +80,7 @@ const AvatarDropdown = ({ menu }) => {
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
         <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
-        <span className={`${styles.name} anticon`}>{currentUser.name}</span>
+        <span className={`${styles.name} anticon`}>{currentUser.username}</span>
       </span>
     </HeaderDropdown>
   );
