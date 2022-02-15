@@ -9,7 +9,7 @@ import styles from '../index.less';
 
 
 const loginOut = async () => {
-  await outLogin();
+  // await outLogin();
   const { query = {}, pathname } = history.location;
   // 安全问题
   const { redirect } = query;
