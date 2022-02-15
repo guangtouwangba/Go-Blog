@@ -24,7 +24,7 @@ jobs:
         GOPROXY: https://goproxy.io
       run:  |
         go get ./...
-        go build -o bin/main ./cmd/main
+        go build -o goblog ./cmd/main.go
 
     - name: Test
       run: go test -v ./...
