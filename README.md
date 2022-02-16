@@ -20,4 +20,4 @@ docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
 make dev
 ```
 
-![test.puml](https://raw.githubusercontent.com/819110812/Go-Blog/test/test.puml)
+![test.puml](https://raw.githubusercontent.com/819110812/Go-Blog/uml-test/test.puml)
