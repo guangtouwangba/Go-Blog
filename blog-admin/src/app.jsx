@@ -13,9 +13,9 @@ export const initialStateConfig = {
 };
 
 export const getInitialState = async () => {
-  const fetchUserInfo = async () => {
+  const fetchUserInfo = async (values) => {
     try {
-      const msg = await queryCurrentUser();
+      const msg = await queryCurrentUser(values);
       console.log(msg)
       return msg.data;
     } catch (error) {

@@ -53,16 +53,7 @@ func (u *UserController) AdminLogin(c *gin.Context) {
 
 // GetCurrentUser
 func (u *UserController) GetCurrentUser(c *gin.Context) {
-	currentUser := request.AdminUserRequest{
-
-		Email:     "gy@qq.com",
-		UserName:  "xcgy",
-		UserId:    "111",
-		Avatar:    "bdxgy",
-		Signature: "awsl",
-	}
-	// todo 获取当前用户
-	response.SuccessWithData(currentUser, c)
+	response.SuccessWithData(nil, c)
 }
 
 func (u *UserController) UserRegister(c *gin.Context) {

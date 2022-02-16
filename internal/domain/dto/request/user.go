@@ -18,12 +18,3 @@ type AdminLoginRequest struct {
 	Account  string `json:"account"`
 	Password string `json:"password"`
 }
-
-// 临时用
-type AdminUserRequest struct {
-	UserName  string `json:"username"`
-	Avatar    string `json:"avatar"`
-	UserId    string `json:"userid"`
-	Email     string `json:"email"`
-	Signature string `json:"signature"`
-}

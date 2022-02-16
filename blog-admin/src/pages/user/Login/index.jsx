@@ -25,8 +25,9 @@ const Login = () => {
   const { initialState, setInitialState } = useModel('@@initialState');
   const [userLoginState, setUserLoginState] = useState({});
 
-  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
+  const fetchUserInfo = async (values, res) => {
+    // const userInfo = await initialState?.fetchUserInfo?.(values);
+    const userInfo = res.data
     console.log(userInfo)
 
     if (userInfo) {
@@ -39,7 +40,7 @@ const Login = () => {
       const res = await login(values);
       if (res.code === 0) {
         message.success('登录成功！');
-        await fetchUserInfo();
+        await fetchUserInfo(values, res);
         if (!history) return;
         const { query } = history.location;
         console.log(history.location)
@@ -47,10 +48,13 @@ const Login = () => {
         console.log(redirect)
         history.push(redirect || '/');
         return;
+      } else {
+        message.error(`登录失败，${res.message}`);
       }
-      console.log(msg);
-      setUserLoginState(msg);
+      // console.log(msg);
+      // setUserLoginState(msg);
     } catch (error) {
+      console.log(error)
       const { errorCode, errorMessage } = error
       message.error(`登录失败，${errorCode} ${errorMessage}`);
     }
