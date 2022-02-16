@@ -1,0 +1,6 @@
+@startuml
+activate Gateway
+activate Client
+
+Gateway -> Client : Request
+@enduml
