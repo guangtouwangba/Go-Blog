@@ -19,3 +19,8 @@ httpserver:
 docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
 make dev
 ```
+
+## 数据库字段更新
+该项目基于`gorm`的automigration的功能，在项目启动时会自动创建未存在的数据库，后续如需更新数据库字段，可以将`config.yaml`中的
+`update`设为true，然后重新启动项目即可。
+弊端：`update`在字段无需更新时需手动设为`false`，否则会造成数据丢失。
