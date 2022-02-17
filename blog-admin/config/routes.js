@@ -25,6 +25,12 @@ export default [
     component: './Welcome',
   },
   {
+    path: '/account/center',
+    name: '个人中心',
+    icon: 'smile',
+    component: './ArticleList',
+  },
+  {
     path: '/article',
     name: '文章',
     icon: 'profile',

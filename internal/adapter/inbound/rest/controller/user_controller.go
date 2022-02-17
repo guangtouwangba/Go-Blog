@@ -56,6 +56,11 @@ func (u *UserController) GetCurrentUser(c *gin.Context) {
 	response.SuccessWithData(nil, c)
 }
 
+// OutLogin
+func (u *UserController) OutLogin(c *gin.Context) {
+	response.SuccessWithData(nil, c)
+}
+
 func (u *UserController) UserRegister(c *gin.Context) {
 	register := request.UserRegisterRequest{}
 	err := c.BindJSON(&register)

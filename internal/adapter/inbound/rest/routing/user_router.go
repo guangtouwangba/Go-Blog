@@ -31,5 +31,6 @@ func (s *UserRouter) InitUserRouter(Router *gin.RouterGroup) {
 		//
 		userRouter.POST("/login/account", loginController.AdminLogin)
 		userRouter.GET("/currentUser", loginController.GetCurrentUser)
+		userRouter.POST("/login/outLogin", loginController.OutLogin)
 	}
 }
