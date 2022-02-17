@@ -24,6 +24,12 @@ type Db interface {
 	GetDb() string
 }
 
+type YmlConfig struct {
+	HttpServer
+	Mysql
+	Redis
+}
+
 type Mysql struct {
 	URL      string `yaml:"url"`
 	Database string `yaml:"database"`
@@ -41,9 +47,9 @@ func (m *Mysql) GetDb() string {
 	return dbAddr
 }
 
-type YmlConfig struct {
-	HttpServer
-	Mysql
+type Redis struct {
+	Host string `yaml:"host"`
+	Port string `yaml:"port"`
 }
 
 func GetYamlConfig() *YmlConfig {

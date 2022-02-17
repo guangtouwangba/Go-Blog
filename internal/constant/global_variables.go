@@ -2,6 +2,7 @@ package constant
 
 import (
 	"Go-Blog/internal/adapter/outbound/db"
+	"Go-Blog/internal/adapter/outbound/redis"
 	"Go-Blog/internal/domain/conveter"
 )
 
@@ -10,6 +11,7 @@ var (
 	ArticleConverter = &conveter.ArticleConverter{}
 	tool             = &db.MysqlTool{}
 	Connect          = tool.GetInstance().GetDb()
+	RedisConnect     = redis.CreateRedisConnect()
 )
 
 const (
