@@ -30,6 +30,7 @@ type Mysql struct {
 	Params   string `yaml:"params,omitempty"`
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
+	Update   bool   `yaml:"update"`
 }
 
 func (m *Mysql) GetDb() string {

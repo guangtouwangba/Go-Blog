@@ -8,3 +8,4 @@ mysql:
   params: "?charset=utf8&parseTime=true"
   user : "root"
   password : "123456"
+  update: false

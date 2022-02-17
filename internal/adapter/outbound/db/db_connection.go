@@ -38,10 +38,38 @@ func (m *MysqlTool) CreateDatabaseConnection() (success bool) {
 
 func (m *MysqlTool) InitTables(db *gorm.DB) {
 	db.Exec("USE " + config.GetYamlConfig().Mysql.Database)
-	err := db.AutoMigrate(&po.User{}, &po.Article{}, &po.Comment{}, &po.Tag{})
-	if err != nil {
-		log.Panicln("err:", err.Error())
+	isUpdate := config.GetYamlConfig().Mysql.Update
+
+	nameToObj := map[string]interface{}{
+		"users":   &po.User{},
+		"article": &po.Article{},
+		"comment": &po.Comment{},
+		"tag":     &po.Tag{},
 	}
+
+	for k, v := range nameToObj {
+		if isUpdate {
+			if dropTable(db, k) {
+				continue
+			}
+		}
+
+		err := db.AutoMigrate(v)
+		if err != nil {
+			log.Panicln("err:", err.Error())
+		}
+	}
+
+}
+
+func dropTable(db *gorm.DB, tableName string) bool {
+	if db.Migrator().HasTable(tableName) {
+		err := db.Migrator().DropTable(tableName)
+		if err != nil {
+			return true
+		}
+	}
+	return false
 }
 
 func (m *MysqlTool) GetInstance() *MysqlTool {
