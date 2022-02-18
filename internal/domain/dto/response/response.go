@@ -6,7 +6,7 @@ import (
 )
 
 const SUCCESS = 0
-const INVALID_PARAMS = 1
+const InvalidParams = 1
 const ERROR = 7
 
 type Response struct {
@@ -15,8 +15,8 @@ type Response struct {
 	Data    interface{} `json:"data"`
 }
 
-func Result(code int64, data interface{}, msg string, c *gin.Context) {
-	c.JSON(http.StatusOK, Response{
+func Result(httpStatus int, code int64, data interface{}, msg string, c *gin.Context) {
+	c.JSON(httpStatus, Response{
 		code,
 		msg,
 		data,
@@ -25,31 +25,31 @@ func Result(code int64, data interface{}, msg string, c *gin.Context) {
 }
 
 func Success(c *gin.Context) {
-	Result(SUCCESS, map[string]interface{}{}, "操作成功", c)
+	Result(http.StatusOK, SUCCESS, map[string]interface{}{}, "操作成功", c)
 
 }
 
 func SuccessWithData(data interface{}, c *gin.Context) {
-	Result(SUCCESS, data, "操作成功", c)
+	Result(http.StatusOK, SUCCESS, data, "操作成功", c)
 }
 
-func Error(c *gin.Context) {
-	Result(ERROR, map[string]interface{}{}, "操作失败", c)
+func Error(httpStatus int, c *gin.Context) {
+	Result(httpStatus, ERROR, map[string]interface{}{}, "操作失败", c)
 }
 
-func ErrorWithMsg(msg string, c *gin.Context) {
-	Result(ERROR, map[string]interface{}{}, msg, c)
+func ErrorWithMsg(httpStatus int, msg string, c *gin.Context) {
+	Result(httpStatus, ERROR, map[string]interface{}{}, msg, c)
 }
 
-func InvalidParam(c *gin.Context) {
-	Result(INVALID_PARAMS, map[string]interface{}{}, "参数错误", c)
+func InvalidParam(httpStatus int, c *gin.Context) {
+	Result(httpStatus, InvalidParams, map[string]interface{}{}, "参数错误", c)
 }
 
-func InvalidParamWithMsg(msg string, c *gin.Context) {
-	Result(INVALID_PARAMS, map[string]interface{}{}, msg, c)
+func InvalidParamWithMsg(httpStatus int, msg string, c *gin.Context) {
+	Result(httpStatus, InvalidParams, map[string]interface{}{}, msg, c)
 }
 
 // 登陆失败
-func LoginFail(msg string, c *gin.Context) {
-	Result(INVALID_PARAMS, map[string]interface{}{}, msg, c)
-}
+//func LoginFail(msg string, c *gin.Context) {
+//	Result(INVALID_PARAMS, map[string]interface{}{}, msg, c)
+//}

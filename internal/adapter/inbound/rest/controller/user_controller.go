@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	uuid "github.com/satori/go.uuid"
 	"log"
+	"net/http"
 )
 
 type UserController struct {
@@ -20,12 +21,12 @@ func (u *UserController) UserLogin(c *gin.Context) {
 	req := request.UserLoginRequest{}
 	err := c.BindJSON(&req)
 	if err != nil {
-		response.InvalidParamWithMsg(constant.InvalidParams, c)
+		response.InvalidParamWithMsg(http.StatusBadRequest, constant.InvalidParams, c)
 	}
 	user, err := u.UserUseCase.Login(&req)
 	if err != nil {
 		log.Println(err)
-		response.Error(c)
+		response.Error(http.StatusUnauthorized, c)
 		return
 	}
 	log.Println(req)
@@ -37,14 +38,14 @@ func (u *UserController) AdminLogin(c *gin.Context) {
 	req := request.AdminLoginRequest{}
 	err := c.BindJSON(&req)
 	if err != nil || req.Account == "" {
-		response.LoginFail(constant.Login_0000.Message, c)
+		response.InvalidParamWithMsg(http.StatusBadRequest, constant.Login_0000.Message, c)
 		return
 	}
 	user, err := u.UserUseCase.AdminLogin(&req)
 
 	if err != nil {
 		log.Println(err)
-		response.LoginFail(err.Error(), c)
+		response.InvalidParamWithMsg(http.StatusUnauthorized, err.Error(), c)
 		return
 	}
 	log.Println(req)
@@ -65,14 +66,14 @@ func (u *UserController) UserRegister(c *gin.Context) {
 	register := request.UserRegisterRequest{}
 	err := c.BindJSON(&register)
 	if err != nil {
-		response.InvalidParamWithMsg(constant.InvalidParams, c)
+		response.InvalidParamWithMsg(http.StatusBadRequest, constant.InvalidParams, c)
 		log.Panicln(err)
 	}
 	log.Println("request from front end", c.Request.Body)
 	res, err := u.UserUseCase.Register(&register)
 	if err != nil {
 		log.Println(err)
-		response.Error(c)
+		response.Error(http.StatusInternalServerError, c)
 		return
 	}
 	response.SuccessWithData(res, c)
@@ -82,7 +83,7 @@ func (u *UserController) UserRegister(c *gin.Context) {
 func (u *UserController) UserInfoById(c *gin.Context) {
 	userpo, err := u.UserUseCase.GetUserById(uuid.FromStringOrNil(c.Param("id")))
 	if err != nil {
-		response.Error(c)
+		response.Error(http.StatusInternalServerError, c)
 		log.Panicln(err)
 	}
 	response.SuccessWithData(userpo, c)

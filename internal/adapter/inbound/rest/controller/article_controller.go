@@ -7,6 +7,7 @@ import (
 	"Go-Blog/internal/domain/dto/response"
 	"github.com/gin-gonic/gin"
 	"log"
+	"net/http"
 )
 
 type ArticleController struct {
@@ -18,12 +19,12 @@ func (a *ArticleController) ArticleList(c *gin.Context) {
 	articleRequest := &request.ArticleRequest{}
 	err := c.Bind(articleRequest)
 	if err != nil {
-		response.ErrorWithMsg(constant.InvalidParams, c)
+		response.ErrorWithMsg(http.StatusBadRequest, constant.InvalidParams, c)
 	}
 	articles, err := a.ArticleUseCase.GetArticles(articleRequest)
 	if err != nil {
 		log.Println(err)
-		response.Error(c)
+		response.Error(http.StatusInternalServerError, c)
 	}
 	response.SuccessWithData(articles, c)
 }
