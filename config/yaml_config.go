@@ -11,6 +11,7 @@ type YmlConfig struct {
 	HttpServer
 	Mysql
 	Redis
+	JWTConfig
 }
 
 func GetYamlConfig() *YmlConfig {

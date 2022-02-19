@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// TODO: 作为中间件去校验JWT
 func JWTAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("x-token")

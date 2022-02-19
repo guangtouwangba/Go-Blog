@@ -10,9 +10,9 @@ type UserRegisterRequest struct {
 }
 
 type UserLoginRequest struct {
-	Email        string `json:"email"`        // 用户名
-	Password     string `json:"password"`     // 密码
-	IsRememberMe bool   `json:"isRememberMe"` // 是否记住登陆状态，默认为false， 如果记住 时间为7天
+	Email        string `json:"email"`                  // 用户名
+	Password     string `json:"password"`               // 密码
+	IsRememberMe bool   `json:"isRememberMe,omitempty"` // 是否记住登陆状态，默认为false， 如果记住 时间为7天
 }
 
 type AdminLoginRequest struct {

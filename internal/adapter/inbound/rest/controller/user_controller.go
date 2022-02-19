@@ -38,7 +38,7 @@ func (u *UserController) AdminLogin(c *gin.Context) {
 	req := request.AdminLoginRequest{}
 	err := c.BindJSON(&req)
 	if err != nil || req.Account == "" {
-		response.InvalidParamWithMsg(http.StatusBadRequest, constant.Login0000.Message, c)
+		response.InvalidParamWithMsg(http.StatusBadRequest, constant.LoginErrorInvalidParams.Message, c)
 		return
 	}
 	user, err := u.UserUseCase.AdminLogin(&req)

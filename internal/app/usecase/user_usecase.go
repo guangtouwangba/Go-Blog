@@ -33,26 +33,31 @@ func (l *UserUseCase) AdminLogin(login *request.AdminLoginRequest) (*entity.User
 	}
 	if userId == uuid.Nil {
 		// 用户不存在
-		log.Panicln(constant.Login0001.Message)
+		log.Panicln(constant.LoginErrorNoRecord.Message)
 	}
 
 	if err != nil {
-		log.Panicln(constant.Login0004.Message)
+		log.Panicln(constant.LoginErrorNoRecord.Message)
 	}
 
 	user, err := l.UserRepository.GetUserById(userId)
 	if err != nil {
 		// 用户不存在
-		log.Panicln(constant.Login0001.Message)
+		log.Panicln(constant.LoginErrorNoRecord.Message)
 	}
 
 	if user.Password != login.Password {
-		log.Panicln(constant.Login0002.Message)
+		log.Panicln(constant.LoginErrorInvalidParams.Message)
 	}
 
-	token, err := JWTService.GetKeyFromRedis(userId)
+	token, err := JWTService.CheckUserStatus(user)
 	if err != nil {
-		log.Panicln(constant.Login0003.Message)
+		log.Panicln(constant.LoginErrorTokenExpired.Message)
+	}
+
+	_, err = JWTService.ParseToken(token)
+	if err != nil {
+		log.Panicln(constant.LoginErrorTokenExpired.Message)
 	}
 
 	return constant.UserConverter.PoToEntity(user), nil
