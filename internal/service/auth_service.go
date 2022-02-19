@@ -69,7 +69,7 @@ func (j *JWTService) ParseToken(token string) (*po.UserClaims, error) {
 	return nil, err
 }
 
-// TODO: 垃圾实现，需要重构，暂时先这样，token永远自动续（我再研究研究）
+// CheckUserStatus TODO: 垃圾实现，需要重构，暂时先这样，token永远自动续（我再研究研究）
 func (j *JWTService) CheckUserStatus(user *po.User) (string, error) {
 	// 此时用户已经存在，但是没有token，需要生成token
 	var token string

@@ -25,7 +25,8 @@ func (l *UserUseCase) Login(login *request.UserLoginRequest) (*entity.User, erro
 	return constant.UserConverter.PoToEntity(user), nil
 }
 
-// 管理端登陆 可通过用户名或者邮箱
+// AdminLogin 管理端登陆 可通过用户名或者邮箱
+// AdminLogin: TODO 需要真正的做到JWT的输出
 func (l *UserUseCase) AdminLogin(login *request.AdminLoginRequest) (*entity.User, error) {
 	userId, err := l.UserRepository.GetUserIdByUsername(login.Account)
 	if userId == uuid.Nil {
