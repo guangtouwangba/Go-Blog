@@ -15,18 +15,18 @@ var (
 )
 
 const (
-	RecordNotExist   = "record not exist"
-	LoginFailed      = "login failed"
-	GetArticleFailed = "get article failed"
-	InvalidParams    = "invalid params"
-	GetUserFailed    = "get user failed"
+	RecordNotExist   = "该记录不存在"
+	LoginFailed      = "登陆失败"
+	GetArticleFailed = "获取文章失败"
+	InvalidParams    = "无效的请求值"
+	GetUserFailed    = "获取用户信息失败"
 )
 
 var (
 	// 登陆相关异常
-	Login_0000 = GlobolErrCode{Code: "Login_0000", Message: "请输入账户或密码"}
-	Login_0001 = GlobolErrCode{Code: "Login_0001", Message: "账号不存在"}
-	Login_0002 = GlobolErrCode{Code: "Login_0002", Message: "登录密码错误"}
-	Login_0003 = GlobolErrCode{Code: "Login_0003", Message: "该用户无管理员权限"}
-	Login_0004 = GlobolErrCode{Code: "Login_0004", Message: "未知错误"}
+	Login0000 = GlobolErrCode{Code: "Login_0000", Message: "请输入账户或密码"}
+	Login0001 = GlobolErrCode{Code: "Login_0001", Message: "账号不存在"}
+	Login0002 = GlobolErrCode{Code: "Login_0002", Message: "登录密码错误"}
+	Login0003 = GlobolErrCode{Code: "Login_0003", Message: "账号已被禁用"}
+	Login0004 = GlobolErrCode{Code: "Login_0004", Message: "未知错误"}
 )

@@ -30,24 +30,21 @@ func (l *UserUseCase) AdminLogin(login *request.AdminLoginRequest) (*entity.User
 	}
 	if userId == uuid.Nil {
 		// 用户不存在
-		log.Panicln(constant.Login_0001.Message)
-		// return nil, errors.New(constant.Login_0001.Message)
+		log.Panicln(constant.Login0001.Message)
 	}
 
 	if err != nil {
-		log.Panicln(constant.Login_0004.Message)
-		// return nil, errors.New(constant.Login_0004.Message)
+		log.Panicln(constant.Login0004.Message)
 	}
 
 	user, err := l.UserRepository.GetUserById(userId)
 	if err != nil {
 		// 用户不存在
-		log.Panicln(constant.Login_0001.Message)
-		// return nil, errors.New(constant.Login_0001.Message)
+		log.Panicln(constant.Login0001.Message)
 	}
 
 	if user.Password != login.Password {
-		log.Panicln(constant.Login_0002.Message)
+		log.Panicln(constant.Login0002.Message)
 		// return nil, errors.New(constant.Login_0002.Message)
 	}
 
@@ -67,6 +64,14 @@ func (l *UserUseCase) Register(register *request.UserRegisterRequest) (*entity.U
 
 func (l *UserUseCase) GetUserById(id uuid.UUID) (*entity.User, error) {
 	user, err := l.UserRepository.GetUserById(id)
+	if err != nil {
+		log.Panicln(err)
+	}
+	return constant.UserConverter.PoToEntity(user), nil
+}
+
+func (l *UserUseCase) GetUserByUserName(username string) (*entity.User, error) {
+	user, err := l.UserRepository.GetUserByUserName(username)
 	if err != nil {
 		log.Panicln(err)
 	}

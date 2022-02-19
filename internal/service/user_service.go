@@ -25,6 +25,7 @@ func (u *UserService) GetByEmail(email string) (*po.User, error) {
 func (u *UserService) GetUserByUserName(username string) (*po.User, error) {
 	user := &po.User{}
 	res := constant.Connect.Find(user, "user_name = ?", username)
+	log.Println("find user by user name : ", user)
 	if res.Error != nil {
 		panic(constant.RecordNotExist)
 		return nil, res.Error
