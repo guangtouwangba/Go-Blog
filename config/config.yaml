@@ -16,4 +16,4 @@ redis:
 
 jwt:
   secret: "goblog"
-  expires: "7d"
+  expires: 86400

@@ -24,9 +24,10 @@ const (
 
 var (
 	// 登陆相关异常
-	Login0000 = GlobolErrCode{Code: "Login_0000", Message: "请输入账户或密码"}
-	Login0001 = GlobolErrCode{Code: "Login_0001", Message: "账号不存在"}
-	Login0002 = GlobolErrCode{Code: "Login_0002", Message: "登录密码错误"}
-	Login0003 = GlobolErrCode{Code: "Login_0003", Message: "账号已被禁用"}
-	Login0004 = GlobolErrCode{Code: "Login_0004", Message: "未知错误"}
+	LoginErrorEmptyParams     = GlobolErrCode{Code: "Login_0000", Message: "请输入账户或密码"}
+	LoginErrorNoRecord        = GlobolErrCode{Code: "Login_0001", Message: "账号不存在"}
+	LoginErrorInvalidParams   = GlobolErrCode{Code: "Login_0002", Message: "登录密码错误"}
+	LoginErrorAccountDisabled = GlobolErrCode{Code: "Login_0003", Message: "账号已被禁用"}
+	LoginErrorUnknown         = GlobolErrCode{Code: "Login_0004", Message: "未知错误"}
+	LoginErrorTokenExpired    = GlobolErrCode{Code: "Login_0005", Message: "账号登陆已过期，请重新登陆"}
 )

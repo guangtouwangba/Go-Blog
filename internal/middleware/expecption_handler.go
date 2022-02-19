@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"Go-Blog/internal/constant"
 	"Go-Blog/internal/domain/dto/response"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -15,7 +16,8 @@ func Recover(c *gin.Context) {
 			log.Printf("panic: %v\n", r)
 			debug.PrintStack()
 			//封装通用json返回
-			response.ErrorWithMsg(http.StatusInternalServerError, errorToString(r), c)
+			responseGenerator(errorToString(r), c)
+			//response.ErrorWithMsg(http.StatusInternalServerError, errorToString(r), c)
 			//终止后续接口调用，不加的话recover到异常后，还会继续执行接口里后续代码
 			c.Abort()
 		}
@@ -32,4 +34,13 @@ func errorToString(r interface{}) string {
 	default:
 		return r.(string)
 	}
+}
+
+func responseGenerator(errMsg string, c *gin.Context) {
+	if errMsg == constant.LoginErrorTokenExpired.Message {
+		response.ErrorWithMsg(http.StatusUnauthorized, errMsg, c)
+	} else {
+		response.ErrorWithMsg(http.StatusBadRequest, errMsg, c)
+	}
+
 }

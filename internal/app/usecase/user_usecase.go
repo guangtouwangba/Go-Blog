@@ -5,6 +5,7 @@ import (
 	"Go-Blog/internal/domain/dto/request"
 	"Go-Blog/internal/domain/entity"
 	"Go-Blog/internal/domain/po"
+	"Go-Blog/internal/service"
 	uuid "github.com/satori/go.uuid"
 	"log"
 )
@@ -12,6 +13,8 @@ import (
 type UserUseCase struct {
 	UserRepository po.UserRepository
 }
+
+var JWTService = service.JWTService{}
 
 func (l *UserUseCase) Login(login *request.UserLoginRequest) (*entity.User, error) {
 	user, err := l.UserRepository.GetByEmail(login.Email)
@@ -45,7 +48,11 @@ func (l *UserUseCase) AdminLogin(login *request.AdminLoginRequest) (*entity.User
 
 	if user.Password != login.Password {
 		log.Panicln(constant.Login0002.Message)
-		// return nil, errors.New(constant.Login_0002.Message)
+	}
+
+	token, err := JWTService.GetKeyFromRedis(userId)
+	if err != nil {
+		log.Panicln(constant.Login0003.Message)
 	}
 
 	return constant.UserConverter.PoToEntity(user), nil
