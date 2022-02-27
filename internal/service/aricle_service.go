@@ -26,7 +26,7 @@ func (a *ArticleService) GetArticles(request *request.ArticleRequest) ([]*po.Art
 		pageSize = 1000
 	}
 	articles := make([]*po.Article, 0)
-	constant.Connect.Where(articlePo).Offset((pageNum - 1) * pageSize).Limit(pageSize).Find(&articles)
+	constant.MysqlConnect.Where(articlePo).Offset((pageNum - 1) * pageSize).Limit(pageSize).Find(&articles)
 	log.Println(articles)
 	return articles, nil
 }

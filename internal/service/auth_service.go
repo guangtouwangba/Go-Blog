@@ -74,6 +74,7 @@ func (j *JWTService) CheckUserStatus(user *po.User) (string, error) {
 	// 此时用户已经存在，但是没有token，需要生成token
 	var token string
 	token, err := j.GetKeyFromRedis(user.Uuid)
+
 	// 未能获取到就生成token
 	if err != nil {
 		token, err = j.GenerateJWTToken(user.UserName, user.Password)

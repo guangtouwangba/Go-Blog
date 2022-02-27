@@ -1,0 +1,12 @@
+@startuml
+frontend -> backend : 1. 获取token
+backend -> database : 2. 查询用户token
+database --> backend : 3. 返回用户token
+backend --> frontend : 4. 返回用户token
+frontend -> backend : 5. 访问api（带token）
+backend -> redis: 6. 验证token
+redis --> backend : 7. 返回token是否有效
+
+
+
+@enduml

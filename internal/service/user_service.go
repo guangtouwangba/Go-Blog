@@ -13,7 +13,7 @@ type UserService struct {
 
 func (u *UserService) GetByEmail(email string) (*po.User, error) {
 	user := &po.User{}
-	res := constant.Connect.First(user, "email = ?", email)
+	res := constant.MysqlConnect.First(user, "email = ?", email)
 	if res.Error != nil {
 		log.Panicln(constant.LoginErrorEmptyParams.Message)
 	}
@@ -24,7 +24,7 @@ func (u *UserService) GetByEmail(email string) (*po.User, error) {
 
 func (u *UserService) GetUserByUserName(username string) (*po.User, error) {
 	user := &po.User{}
-	res := constant.Connect.Find(user, "user_name = ?", username)
+	res := constant.MysqlConnect.Find(user, "user_name = ?", username)
 	log.Println("find user by user name : ", user)
 	if res.Error != nil {
 		panic(constant.RecordNotExist)
@@ -52,7 +52,7 @@ func (u *UserService) GetUserIdByUsername(username string) (uuid.UUID, error) {
 
 func (u *UserService) GetUserById(id uuid.UUID) (*po.User, error) {
 	user := &po.User{}
-	res := constant.Connect.First(user, "uuid = ?", id)
+	res := constant.MysqlConnect.First(user, "uuid = ?", id)
 	if res.Error != nil {
 		log.Panicln(constant.LoginErrorEmptyParams.Message)
 		// return nil, res.Error
@@ -61,7 +61,7 @@ func (u *UserService) GetUserById(id uuid.UUID) (*po.User, error) {
 }
 
 func (u *UserService) Create(user *po.User) error {
-	res := constant.Connect.Omit("Id").FirstOrCreate(user, &po.User{Email: user.Email})
+	res := constant.MysqlConnect.Omit("Id").FirstOrCreate(user, &po.User{Email: user.Email})
 	log.Println(user)
 	return res.Error
 }

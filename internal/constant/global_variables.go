@@ -10,7 +10,7 @@ var (
 	UserConverter    = &conveter.UserConverter{}
 	ArticleConverter = &conveter.ArticleConverter{}
 	tool             = &db.MysqlTool{}
-	Connect          = tool.GetInstance().GetDb()
+	MysqlConnect     = tool.GetInstance().GetDb()
 	RedisConnect     = redis.CreateRedisConnect()
 )
 
