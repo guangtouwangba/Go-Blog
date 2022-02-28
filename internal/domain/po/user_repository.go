@@ -9,4 +9,5 @@ type UserRepository interface {
 	GetUserIdByUsername(username string) (uuid.UUID, error)
 	GetUserById(id uuid.UUID) (*User, error)
 	GetByEmail(email string) (*User, error)
+	GetUserToken(user *User) (string, error)
 }

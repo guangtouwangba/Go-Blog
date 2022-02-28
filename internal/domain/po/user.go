@@ -21,9 +21,8 @@ type User struct {
 
 type UserClaims struct {
 	*jwt.StandardClaims
-	TokenType string `json:"tokenType"`
-	UserName  string `json:"userName"`
-	Password  string `json:"password"`
+	UserName string `json:"userName"`
+	Password string `json:"password"`
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) (err error) {

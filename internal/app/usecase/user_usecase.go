@@ -51,16 +51,6 @@ func (l *UserUseCase) AdminLogin(login *request.AdminLoginRequest) (*entity.User
 		log.Panicln(constant.LoginErrorInvalidParams.Message)
 	}
 
-	token, err := JWTService.CheckUserStatus(user)
-	if err != nil {
-		log.Panicln(constant.LoginErrorTokenExpired.Message)
-	}
-
-	_, err = JWTService.ParseToken(token)
-	if err != nil {
-		log.Panicln(constant.LoginErrorTokenExpired.Message)
-	}
-
 	return constant.UserConverter.PoToEntity(user), nil
 }
 
