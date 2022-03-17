@@ -12,3 +12,12 @@ repos:
       - id: go-unit-tests
       - id: gofumpt # requires github.com/mvdan/gofumpt
       - id: golangci-lint # requires github.com/golangci/golangci-lint
+  - repo: https://github.com/syntaqx/git-hooks
+    rev: v0.0.16
+    hooks:
+      - id: circleci-config-validate
+      - id: forbid-binary
+      - id: go-fmt
+      - id: go-test
+      - id: go-mod-tidy
+      - id: go-generate
