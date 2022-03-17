@@ -65,3 +65,9 @@ func (u *UserService) Create(user *po.User) error {
 	log.Println(user)
 	return res.Error
 }
+
+func (u *UserService) GetUserToken(user *po.User) (string, error) {
+	// TODO: Implement this
+	panic("implement me")
+	return "", nil
+}
