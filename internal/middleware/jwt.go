@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"Go-Blog/config"
+	"Go-Blog/internal/domain/do"
 	"Go-Blog/internal/domain/dto/response"
-	"Go-Blog/internal/domain/po"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 	"log"
@@ -46,18 +46,18 @@ type JWT struct {
 }
 
 // NewToken : 生成一个token
-func (j *JWT) NewToken(claims *po.UserClaims) (string, error) {
+func (j *JWT) NewToken(claims *do.UserClaims) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(j.SigningKey)
 }
 
 // ParseToken : 解析token
-func (j *JWT) ParseToken(token string) (*po.UserClaims, error) {
-	tokenClaims, err := jwt.ParseWithClaims(token, &po.UserClaims{}, func(token *jwt.Token) (interface{}, error) {
+func (j *JWT) ParseToken(token string) (*do.UserClaims, error) {
+	tokenClaims, err := jwt.ParseWithClaims(token, &do.UserClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return j.SigningKey, nil
 	})
 	if tokenClaims != nil {
-		if claims, ok := tokenClaims.Claims.(*po.UserClaims); ok && tokenClaims.Valid {
+		if claims, ok := tokenClaims.Claims.(*do.UserClaims); ok && tokenClaims.Valid {
 			return claims, nil
 		}
 	}
@@ -69,11 +69,11 @@ func (j *JWT) RefreshToken(token string) (string, error) {
 	jwt.TimeFunc = func() time.Time {
 		return time.Unix(0, 0)
 	}
-	tokenClaims, err := jwt.ParseWithClaims(token, &po.UserClaims{}, func(token *jwt.Token) (interface{}, error) {
+	tokenClaims, err := jwt.ParseWithClaims(token, &do.UserClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return j.SigningKey, nil
 	})
 	if tokenClaims != nil {
-		if claims, ok := tokenClaims.Claims.(*po.UserClaims); ok && tokenClaims.Valid {
+		if claims, ok := tokenClaims.Claims.(*do.UserClaims); ok && tokenClaims.Valid {
 			jwt.TimeFunc = time.Now
 			claims.StandardClaims.ExpiresAt = time.Now().Add(1 * time.Hour).Unix()
 			return j.NewToken(claims)

@@ -2,16 +2,16 @@ package usecase
 
 import (
 	"Go-Blog/internal/constant"
+	"Go-Blog/internal/domain/do/repository"
 	"Go-Blog/internal/domain/dto/request"
 	"Go-Blog/internal/domain/entity"
-	"Go-Blog/internal/domain/po"
 	"Go-Blog/internal/service"
 	uuid "github.com/satori/go.uuid"
 	"log"
 )
 
 type UserUseCase struct {
-	UserRepository po.UserRepository
+	UserRepository repository.UserRepository
 }
 
 var JWTService = service.JWTService{}

@@ -2,16 +2,17 @@ package usecase
 
 import (
 	"Go-Blog/internal/constant"
+	"Go-Blog/internal/domain/do"
+	"Go-Blog/internal/domain/do/repository"
 	"Go-Blog/internal/domain/dto/request"
 	"Go-Blog/internal/domain/entity"
-	"Go-Blog/internal/domain/po"
 )
 
 type ArticleUseCase struct {
-	ArticleRepository po.ArticleRepository
+	ArticleRepository repository.ArticleRepository
 }
 
-func (a *ArticleUseCase) GetArticle(id int) (*po.Article, error) {
+func (a *ArticleUseCase) GetArticle(id int) (*do.ArticleDO, error) {
 	return a.ArticleRepository.GetArticle(id)
 }
 
