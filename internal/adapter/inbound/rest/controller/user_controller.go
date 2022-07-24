@@ -1,10 +1,10 @@
 package controller
 
 import (
+	"Go-Blog/internal/adapter/inbound/rest/controller/dto/request"
+	"Go-Blog/internal/adapter/inbound/rest/controller/dto/response"
 	"Go-Blog/internal/app/usecase"
 	"Go-Blog/internal/constant"
-	"Go-Blog/internal/domain/dto/request"
-	"Go-Blog/internal/domain/dto/response"
 	"github.com/gin-gonic/gin"
 	uuid "github.com/satori/go.uuid"
 	"log"

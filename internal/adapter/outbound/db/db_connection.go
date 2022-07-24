@@ -2,7 +2,7 @@ package db
 
 import (
 	"Go-Blog/config"
-	"Go-Blog/internal/domain/do"
+	do2 "Go-Blog/internal/adapter/outbound/do"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"log"
@@ -41,10 +41,10 @@ func (m *MysqlTool) InitTables(db *gorm.DB) {
 	isUpdate := config.GetYamlConfig().Mysql.Update
 
 	nameToObj := map[string]interface{}{
-		"users":   &do.User{},
-		"article": &do.ArticleDO{},
-		"comment": &do.CommentDO{},
-		"tag":     &do.TagDO{},
+		"users":   &do2.User{},
+		"article": &do2.ArticleDO{},
+		"comment": &do2.CommentDO{},
+		"tag":     &do2.TagDO{},
 	}
 
 	for k, v := range nameToObj {

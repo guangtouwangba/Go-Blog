@@ -1,8 +1,8 @@
 package conveter
 
 import (
-	"Go-Blog/internal/domain/do"
-	"Go-Blog/internal/domain/dto/request"
+	"Go-Blog/internal/adapter/inbound/rest/controller/dto/request"
+	"Go-Blog/internal/adapter/outbound/do"
 	"Go-Blog/internal/domain/entity"
 )
 

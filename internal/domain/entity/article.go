@@ -1,6 +1,13 @@
 package entity
 
+import (
+	"Go-Blog/internal/adapter/inbound/rest/listener"
+	uuid "github.com/satori/go.uuid"
+)
+
 type Article struct {
+	Id          uuid.UUID `json:"id"`
+	Code        string    `json:"code" gorm:"type:varchar(100)"`
 	Title       string    `json:"title"`       // 标题
 	Keywords    string    `json:"keywords"`    // 文章关键词
 	Content     string    `json:"content"`     //
@@ -16,9 +23,31 @@ type Article struct {
 }
 
 type Comment struct {
-	Content string `json:"content"`
-	Author  string `json:"author"`
-	Time    string `json:"time"`
+	Observers []listener.Observer `json:"observers"`
+	Id        uuid.UUID           `json:"id"`
+	Code      string              `json:"code" gorm:"type:varchar(100)"`
+	Content   string              `json:"content"`
+	Author    string              `json:"author"`
+	Time      string              `json:"time"`
+}
+
+func (c *Comment) Register(observer listener.Observer) {
+	c.Observers = append(c.Observers, observer)
+}
+
+func (c *Comment) Unregister(observer listener.Observer) {
+	for i, o := range c.Observers {
+		if o == observer {
+			c.Observers = append(c.Observers[:i], c.Observers[i+1:]...)
+			break
+		}
+	}
+}
+
+func (c *Comment) Notify() {
+	for _, observer := range c.Observers {
+		observer.Update()
+	}
 }
 
 type Tag struct {

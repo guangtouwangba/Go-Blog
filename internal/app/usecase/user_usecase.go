@@ -1,9 +1,9 @@
 package usecase
 
 import (
+	"Go-Blog/internal/adapter/inbound/rest/controller/dto/request"
+	"Go-Blog/internal/adapter/outbound/do/repository"
 	"Go-Blog/internal/constant"
-	"Go-Blog/internal/domain/do/repository"
-	"Go-Blog/internal/domain/dto/request"
 	"Go-Blog/internal/domain/entity"
 	"Go-Blog/internal/service"
 	uuid "github.com/satori/go.uuid"

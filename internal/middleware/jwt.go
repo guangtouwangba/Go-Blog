@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"Go-Blog/config"
-	"Go-Blog/internal/domain/do"
-	"Go-Blog/internal/domain/dto/response"
+	"Go-Blog/internal/adapter/inbound/rest/controller/dto/response"
+	"Go-Blog/internal/adapter/outbound/do"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 	"log"

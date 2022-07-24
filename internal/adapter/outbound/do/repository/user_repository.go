@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"Go-Blog/internal/domain/do"
+	"Go-Blog/internal/adapter/outbound/do"
 	uuid "github.com/satori/go.uuid"
 )
 

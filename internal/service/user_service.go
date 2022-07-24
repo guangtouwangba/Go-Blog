@@ -1,9 +1,9 @@
 package service
 
 import (
+	"Go-Blog/internal/adapter/outbound/do"
+	"Go-Blog/internal/adapter/outbound/do/repository"
 	"Go-Blog/internal/constant"
-	"Go-Blog/internal/domain/do"
-	"Go-Blog/internal/domain/do/repository"
 	uuid "github.com/satori/go.uuid"
 	"log"
 )

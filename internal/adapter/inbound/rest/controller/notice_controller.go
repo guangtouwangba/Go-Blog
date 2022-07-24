@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"Go-Blog/internal/domain/dto/response"
+	"Go-Blog/internal/adapter/inbound/rest/controller/dto/response"
 	"github.com/gin-gonic/gin"
 )
 

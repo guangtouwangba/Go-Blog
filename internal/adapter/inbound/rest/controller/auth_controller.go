@@ -1,8 +1,8 @@
 package controller
 
 import (
+	"Go-Blog/internal/adapter/inbound/rest/controller/dto/response"
 	"Go-Blog/internal/app/usecase"
-	"Go-Blog/internal/domain/dto/response"
 	"Go-Blog/internal/service"
 	"github.com/gin-gonic/gin"
 	"log"

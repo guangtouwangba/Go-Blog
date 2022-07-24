@@ -1,8 +1,8 @@
 package middleware
 
 import (
+	"Go-Blog/internal/adapter/inbound/rest/controller/dto/response"
 	"Go-Blog/internal/constant"
-	"Go-Blog/internal/domain/dto/response"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
